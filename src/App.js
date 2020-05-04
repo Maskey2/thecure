@@ -1,36 +1,32 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-import Home from './components/Home'
-import './App.css'
-export default function App() {
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Home from './components/Home';
+import Termsofuse from './components/Termsofuse';
+import Privacy from './components/Privacy'
+import Footer from './components/Footer';
+import Navbar from './components/Navbar'
+import About from './components/About'
+import Users from './components/Users'
+import Box from '@material-ui/core/Box';
+import Drawer from './components/Drawer'
+
+function App() {
   return (
-    <Router>
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-    </Router>
+    <BrowserRouter>
+      <Navbar />
+      <Box display={{ md: 'block', lg: 'none' }} ><Drawer /></Box>
+      <Box display={{ xs: 'none', sm: 'block', md: 'none' }}></Box>
+      <Switch>
+        <Route exact path="/" component={Home}></Route>
+        <Route path="/about" component={About} ></Route>
+        <Route path="/users" component={Users}></Route>
+        <Route path="/privacypolicy" component={Privacy} ></Route>
+        <Route path="/termsofuse" component={Termsofuse}></Route>
+      </Switch>
+      <Footer />
+    </BrowserRouter>
   );
 }
 
+export default App;
 
-
-function About() {
-  return <h2>About</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
-}
